@@ -1,0 +1,49 @@
+{
+    "variable": {
+        "cluster_name": [
+            {
+                "type": "string",
+                "description": "The name of the EKS cluster where the add-on will be installed.",
+                "nullable": false
+            }
+        ],
+        "addon_name": [
+            {
+                "type": "string",
+                "description": "The name of the EKS add-on (e.g., 'coredns', 'vpc-cni').",
+                "nullable": false
+            }
+        ],
+        "addon_version": [
+            {
+                "type": "string",
+                "description": "The version of the EKS add-on to install. Leave blank to use the latest version.",
+                "default": "",
+                "nullable": true
+            }
+        ],
+        "resolve_conflicts_on_create": [
+            {
+                "type": "string",
+                "description": "What to do if conflicts arise during add-on creation. Options: 'OVERWRITE' or 'NONE'.",
+                "default": "OVERWRITE",
+                "nullable": true
+            }
+        ],
+        "service_account_role_arn": [
+            {
+                "type": "string",
+                "description": "The IAM role ARN for the service account, if required by the add-on.",
+                "default": "",
+                "nullable": true
+            }
+        ],
+        "tags": [
+            {
+                "type": "map(string)",
+                "description": "A mapping of tags to assign to the add-on.",
+                "nullable": true
+            }
+        ]
+    }
+}

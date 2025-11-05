@@ -1,0 +1,19 @@
+{
+  "output": {
+    "arn": {
+      "description": "Amazon Resource Name for integration with IAM policies and API calls",
+      "sensitive": false,
+      "value": "${aws_xray_sampling_rule.this.arn}"
+    },
+    "id": {
+      "description": "Unique identifier for managing and referencing the sampling rule",
+      "sensitive": false,
+      "value": "${aws_xray_sampling_rule.this.id}"
+    },
+    "tags_all": {
+      "description": "Consolidated tags for resource identification and organization",
+      "sensitive": false,
+      "value": "${aws_xray_sampling_rule.this.tags_all}"
+    }
+  }
+}

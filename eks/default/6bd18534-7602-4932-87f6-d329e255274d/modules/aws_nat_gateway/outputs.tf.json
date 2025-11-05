@@ -1,0 +1,29 @@
+{
+  "output": {
+    "association_id": {
+      "description": "ID for the NAT gateway's elastic IP association, useful for tracking network links",
+      "sensitive": false,
+      "value": "${aws_nat_gateway.this.association_id}"
+    },
+    "id": {
+      "description": "Unique identifier for referencing the NAT gateway in configurations",
+      "sensitive": false,
+      "value": "${aws_nat_gateway.this.id}"
+    },
+    "network_interface_id": {
+      "description": "ID of the network interface attached to the NAT gateway, useful for network management",
+      "sensitive": false,
+      "value": "${aws_nat_gateway.this.network_interface_id}"
+    },
+    "public_ip": {
+      "description": "Public IP address of the NAT gateway, used for external communication",
+      "sensitive": false,
+      "value": "${aws_nat_gateway.this.public_ip}"
+    },
+    "tags_all": {
+      "description": "Complete set of tags assigned to the NAT gateway for resource categorization",
+      "sensitive": false,
+      "value": "${aws_nat_gateway.this.tags_all}"
+    }
+  }
+}

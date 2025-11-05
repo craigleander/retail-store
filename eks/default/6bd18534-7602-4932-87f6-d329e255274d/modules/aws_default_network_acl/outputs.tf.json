@@ -1,0 +1,29 @@
+{
+  "output": {
+    "arn": {
+      "description": "Amazon Resource Name used for identifying the network ACL in IAM and API operations",
+      "sensitive": false,
+      "value": "${aws_default_network_acl.this.arn}"
+    },
+    "id": {
+      "description": "Unique identifier for referencing the network ACL in other configurations",
+      "sensitive": false,
+      "value": "${aws_default_network_acl.this.id}"
+    },
+    "owner_id": {
+      "description": "AWS account ID that owns the network ACL resource",
+      "sensitive": false,
+      "value": "${aws_default_network_acl.this.owner_id}"
+    },
+    "tags_all": {
+      "description": "Consolidated list of tags applied to the network ACL for resource management",
+      "sensitive": false,
+      "value": "${aws_default_network_acl.this.tags_all}"
+    },
+    "vpc_id": {
+      "description": "ID of the VPC associated with this default network ACL",
+      "sensitive": false,
+      "value": "${aws_default_network_acl.this.vpc_id}"
+    }
+  }
+}

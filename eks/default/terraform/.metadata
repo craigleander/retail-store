@@ -1,0 +1,7 @@
+{
+  "app_stack_name": "cloud2code_leanders-MacBook-Air.local_20251007144957",
+  "iac_type": "Terraform",
+  "provider": "aws",
+  "multi_env": false,
+  "exporter": "terraform"
+}

@@ -1,0 +1,14 @@
+{
+  "output": {
+    "arn": {
+      "description": "The volume ARN ",
+      "sensitive": false,
+      "value": "${aws_ebs_volume.this.arn}"
+    },
+    "id": {
+      "description": "The volume ID",
+      "sensitive": false,
+      "value": "${aws_ebs_volume.this.id}"
+    }
+  }
+}

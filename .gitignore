@@ -1,0 +1,46 @@
+# StackGen generated directories
+cloud2code/
+
+# Terraform directories
+.terraform/
+.terraform.lock.hcl
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+terraform.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+*.plan
+*.plan.json
+
+# Terraform variable files (may contain sensitive data)
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Backup files
+*.zip
+*.backup
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.local
+*.env
+
+
+

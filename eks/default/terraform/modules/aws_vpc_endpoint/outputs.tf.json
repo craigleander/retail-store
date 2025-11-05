@@ -1,0 +1,14 @@
+{
+  "output": {
+    "arn": {
+      "description": "The value of the arn output",
+      "sensitive": false,
+      "value": "${aws_vpc_endpoint.this.arn}"
+    },
+    "id": {
+      "description": "The value of the vpc id",
+      "sensitive": false,
+      "value": "${aws_vpc_endpoint.this.id}"
+    }
+  }
+}

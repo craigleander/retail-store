@@ -1,0 +1,14 @@
+{
+  "output": {
+    "arn": {
+      "description": "The ARN of the parameter group",
+      "sensitive": false,
+      "value": "${aws_db_parameter_group.this.arn}"
+    },
+    "id": {
+      "description": "The ID of the parameter group",
+      "sensitive": false,
+      "value": "${aws_db_parameter_group.this.id}"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+#aws eks --region us-east-1 update-kubeconfig --name retail-store --profile stackgendev
+#helm upgrade --install devopsnow-agent -n devopsnow --create-namespace observe-agent --repo https://registry.devopsnow.io/chartrepo/public -f opsverse-values.yaml
+
+#Grafanna - https://stackgen-lea.ap-south-1.aws.opsverse.cloud/
+
+
+cluster_name: retail-store
+logs:
+  host: logs-stackgen-lea.ap-south-1.aws.opsverse.cloud
+  username: devopsnow
+  password: ebftb0vt68
+  multiline:
+    snippet: |
+      - multiline:
+          firstline: '^\d{2,4}\-\d{2,4}\-\d{2,4} \d{2,4}\:\d{2,4}\:\d{2,4}\.\d{1,6}'
+          max_lines: 200
+victoria-metrics-agent:
+  remoteWriteUrls:
+    - https://metrics-stackgen-lea.ap-south-1.aws.opsverse.cloud/api/v1/write
+  extraArgs:
+    remoteWrite.basicAuth.password: ebftb0vt68
+    remoteWrite.basicAuth.username: devopsnow
+    remoteWrite.label: cluster=retail-store
+otelcollector:
+  enabled: true
+  jaeger:
+    url: >-
+      https://traces-collector-stackgen-lea.ap-south-1.aws.opsverse.cloud/api/v2/spans
+    auth: Basic ZGV2b3Bzbm93OmViZnRiMHZ0Njg=
+
+# Add this section to enable volume logging
+loki:
+  limits_config:
+    volume_enabled: true

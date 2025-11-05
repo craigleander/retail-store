@@ -1,0 +1,17 @@
+#kubectl apply -f pvc.yaml -n devopsnow && kubectl patch pvc devopsnow-vmagent -n devopsnow -p '{"spec":{"storageClassName":"gp2"}}'
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: devopsnow-pvc
+  namespace: devopsnow
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: gp2
+
+#kubectl describe pvc devopsnow-vmagent -n devopsnow 
+# kubectl get po -n devopsnow

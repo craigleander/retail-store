@@ -1,0 +1,14 @@
+{
+  "output": {
+    "id": {
+      "description": "The unique identifier for the EKS cluster authentication data.",
+      "sensitive": false,
+      "value": "${data.aws_eks_cluster_auth.this.id}"
+    },
+    "token": {
+      "description": "The authentication token for the EKS cluster.",
+      "sensitive": true,
+      "value": "${data.aws_eks_cluster_auth.this.token}"
+    }
+  }
+}

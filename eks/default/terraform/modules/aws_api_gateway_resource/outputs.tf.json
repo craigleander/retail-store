@@ -1,0 +1,9 @@
+{
+  "output": {
+    "id": {
+      "description": "The unique identifier of the API Gateway resource.",
+      "sensitive": false,
+      "value": "${aws_api_gateway_resource.this.id}"
+    }
+  }
+}

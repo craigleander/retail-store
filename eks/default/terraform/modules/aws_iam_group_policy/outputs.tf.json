@@ -1,0 +1,9 @@
+{
+  "output": {
+    "id": {
+      "description": "Unique identifier for referencing this group policy in configurations",
+      "sensitive": false,
+      "value": "${aws_iam_group_policy.this.id}"
+    }
+  }
+}

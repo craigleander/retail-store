@@ -1,0 +1,14 @@
+{
+  "output": {
+    "allocation_id": {
+      "description": "The allocation ID of the EIP",
+      "sensitive": false,
+      "value": "${aws_eip.this.allocation_id}"
+    },
+    "id": {
+      "description": "The value of the id output",
+      "sensitive": false,
+      "value": "${aws_eip.this.id}"
+    }
+  }
+}
