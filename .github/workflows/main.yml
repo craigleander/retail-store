@@ -1,0 +1,86 @@
+name: Deploy StackGen Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Apply infrastructure changes (default: false for plan only)'
+        required: false
+        default: 'false'
+        type: boolean
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+env:
+  APPSTACK_ID: 192e4032-bc2e-4516-a5a9-6fb9b54b5e1d
+  AWS_REGION: us-east-1
+  AWS_ROLE_ARN: arn:aws:iam::339712749745:role/retail-store-aiden
+
+jobs:
+  deploy:
+    name: Deploy Infrastructure
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: latest
+
+      - name: Install Terraform (fallback)
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: Install StackGen CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/stackgen/cli/main/install.sh | sh
+          echo "$HOME/.stackgen/bin" >> $GITHUB_PATH
+
+      - name: Verify StackGen CLI installation
+        run: |
+          stackgen version
+
+      - name: Configure StackGen (if needed)
+        run: |
+          # Add StackGen API token if required
+          # export STACKGEN_API_TOKEN=${{ secrets.STACKGEN_API_TOKEN }}
+          echo "StackGen CLI configured"
+
+      - name: Provision Infrastructure (Plan)
+        if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.apply == 'false')
+        run: |
+          stackgen provision \
+            --appstack-id ${{ env.APPSTACK_ID }} \
+            --backend-config 'bucket=qa-environment' \
+            --env-profile qa \
+            --iac-tool tofu
+
+      - name: Provision Infrastructure (Apply)
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.apply == 'true')
+        run: |
+          stackgen provision \
+            --appstack-id ${{ env.APPSTACK_ID }} \
+            --backend-config 'bucket=qa-environment' \
+            --env-profile qa \
+            --iac-tool tofu \
+            --apply
+
